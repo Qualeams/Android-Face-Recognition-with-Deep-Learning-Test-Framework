@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright 2016 The Android Open Source Project
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+         http://www.apache.org/licenses/LICENSE-2.0
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+    -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        tools:context="ch.zhaw.facerecognition.Activities.AddPersonActivity">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/txt_Name"
+            android:layout_centerInParent="true" />
+
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTrainingTest"
+            android:checked="false"
+            android:textOn="Test"
+            android:textOff="Training"
+            android:layout_below="@+id/txt_Name"
+            android:layout_centerInParent="true" />
+
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnReferenceDeviation"
+            android:checked="false"
+            android:textOn="Deviation"
+            android:textOff="Reference"
+            android:layout_below="@+id/btnTrainingTest"
+            android:layout_centerInParent="true"
+            android:enabled="false"/>
+
+        <ToggleButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTimeManually"
+            android:checked="false"
+            android:textOn="Manually"
+            android:textOff="Time"
+            android:layout_below="@+id/btnReferenceDeviation"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start"
+            android:id="@+id/btn_Start"
+            android:layout_below="@+id/btnTimeManually"
+            android:layout_centerInParent="true" />
+    </LinearLayout>
+</RelativeLayout>

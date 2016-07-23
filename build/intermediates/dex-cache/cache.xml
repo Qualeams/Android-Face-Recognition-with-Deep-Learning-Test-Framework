@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_03422f22b9e6e834c1fb4fc5cb3eb844e2dc35bf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_fd2f789785c055d3dcceb612661f249b9e9b5949/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="18cb64a246272d9dbb0878a4782cde56c7192fa6">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_accc4915d27798c3e88b3ee556570ac56b98ce32/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_925fe966cc4479357da27a892a82c896630100cb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_ba63de1f1919e7a85594923561a9d3ef832f2947/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e3c4f74aa5cc5e6cf5f53b75d15c01e8426add55">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_272e47746e486fb394a2bf86ba97ede6938b164c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_12cef220cc29ee00d4eb5229191f69e20596e213/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sladomic/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/sladomic/StudioProjects/BA2016_Face_Detection/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_89264976178ae0385b189f5024e876fc6c179739/classes.dex" />
+    </item>
+
+</items>
