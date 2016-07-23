@@ -15,7 +15,7 @@ Code has been derived from the following sources:
 - caffe-android-lib - https://github.com/sh1r0/caffe-android-lib
 
 ##App architecture
-![alt tag](https://github.engineering.zhaw.ch/BA16RealTimeFaceDetectionOnAndroid/BA2016_Face_Detection/blob/master/AppArchitecture.png)
+![alt tag](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/AppArchitecture.png)
 
 ##Usage
 ###Compilation
