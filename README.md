@@ -32,4 +32,4 @@ There are 3 different usages:
 - make install (copies the libs to the folder /app/src/main/jniLibs/armeabi-v7a)
 
 ###User manual
-The user manual can be found [here](https://github.engineering.zhaw.ch/BA16RealTimeFaceDetectionOnAndroid/BA2016_Face_Detection/blob/master/USER%20MANUAL.md)
+The user manual can be found [here](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/USER%20MANUAL.md)
