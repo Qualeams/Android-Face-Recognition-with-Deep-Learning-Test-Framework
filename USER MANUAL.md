@@ -223,7 +223,7 @@ However it's recommended to use the built in "Add Person" function since it save
 Each name represents a class. If you want to use the test function, you need to use the exact same name for the same person in training and test.
 
 ###Training / Test
-Switch between capturing for the training or test function
+Switch between capturing for the training or test function.
 
 ###Reference / Deviation
 This is only needed if you capture images for the test function. Normally you just take a batch of pictures for testing (reference). But if you want to test some specific deviations (e.g. bad light conditions), then you can capture this specific test set in the deviation folder which will be compared to the reference folder.
