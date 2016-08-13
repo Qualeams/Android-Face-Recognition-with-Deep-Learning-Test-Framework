@@ -103,7 +103,7 @@ public class TrainingActivity extends Activity {
                                 MatName m = new MatName("processedImage", processedImage);
                                 fileHelper.saveMatToImage(m, FileHelper.DATA_PATH);
 
-                                rec.addImage(processedImage, name);
+                                rec.addImage(processedImage, name, false);
 
 //                            fileHelper.saveCroppedImage(imgRgb, ppF, file, name, counter);
 
