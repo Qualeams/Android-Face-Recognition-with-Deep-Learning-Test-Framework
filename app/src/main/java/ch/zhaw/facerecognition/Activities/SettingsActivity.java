@@ -17,15 +17,13 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import ch.zhaw.facerecognition.R;
+import ch.zhaw.facerecognitionlibrary.R;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
