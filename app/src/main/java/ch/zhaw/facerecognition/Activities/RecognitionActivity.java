@@ -19,7 +19,6 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.SurfaceView;
@@ -32,21 +31,17 @@ import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.util.List;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
-import ch.zhaw.facerecognition.Helpers.MatName;
-import ch.zhaw.facerecognition.Helpers.MatOperation;
-import ch.zhaw.facerecognition.PreProcessor.PreProcessorFactory;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
+import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
-import ch.zhaw.facerecognition.Recognition.Recognition;
-import ch.zhaw.facerecognition.Recognition.RecognitionFactory;
+import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
+import ch.zhaw.facerecognitionlibrary.Recognition.RecognitionFactory;
 
 public class RecognitionActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private JavaCameraView mRecognitionView;

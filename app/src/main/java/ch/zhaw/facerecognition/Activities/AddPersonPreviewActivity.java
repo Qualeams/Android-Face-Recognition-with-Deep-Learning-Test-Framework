@@ -22,7 +22,6 @@ import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import org.opencv.android.CameraBridgeViewBase;
@@ -30,19 +29,17 @@ import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.util.Date;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
-import ch.zhaw.facerecognition.Helpers.MatName;
-import ch.zhaw.facerecognition.Helpers.MatOperation;
-import ch.zhaw.facerecognition.PreProcessor.PreProcessorFactory;
-import ch.zhaw.facerecognition.PreProcessor.StandardPreprocessing.Crop;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
+import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
+import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
+import ch.zhaw.facerecognitionlibrary.PreProcessor.StandardPreprocessing.Crop;
 import ch.zhaw.facerecognition.R;
 
 public class AddPersonPreviewActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {

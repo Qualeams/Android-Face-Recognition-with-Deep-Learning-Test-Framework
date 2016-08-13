@@ -27,7 +27,6 @@ import android.widget.TextView;
 
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfDouble;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -37,12 +36,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
-import ch.zhaw.facerecognition.Helpers.MatName;
-import ch.zhaw.facerecognition.PreProcessor.PreProcessorFactory;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
-import ch.zhaw.facerecognition.Recognition.Recognition;
-import ch.zhaw.facerecognition.Recognition.RecognitionFactory;
+import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
+import ch.zhaw.facerecognitionlibrary.Recognition.RecognitionFactory;
 
 public class TestActivity extends AppCompatActivity {
     private static final String TAG = "Test";

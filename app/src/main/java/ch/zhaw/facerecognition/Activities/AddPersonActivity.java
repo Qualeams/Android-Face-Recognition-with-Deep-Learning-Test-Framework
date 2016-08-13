@@ -26,7 +26,7 @@ import android.widget.ToggleButton;
 
 import java.io.File;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognition.R;
 
 public class AddPersonActivity extends Activity {

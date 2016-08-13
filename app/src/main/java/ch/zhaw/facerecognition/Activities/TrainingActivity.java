@@ -21,17 +21,11 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -39,12 +33,12 @@ import org.opencv.imgproc.Imgproc;
 import java.io.File;
 import java.util.List;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
-import ch.zhaw.facerecognition.Helpers.MatName;
-import ch.zhaw.facerecognition.PreProcessor.PreProcessorFactory;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
+import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
-import ch.zhaw.facerecognition.Recognition.Recognition;
-import ch.zhaw.facerecognition.Recognition.RecognitionFactory;
+import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
+import ch.zhaw.facerecognitionlibrary.Recognition.RecognitionFactory;
 
 public class TrainingActivity extends Activity {
     private static final String TAG = "Training";

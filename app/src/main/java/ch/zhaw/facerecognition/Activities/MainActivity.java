@@ -17,7 +17,6 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -26,7 +25,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
-import ch.zhaw.facerecognition.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognition.R;
 
 public class MainActivity extends Activity {
