@@ -21,6 +21,11 @@ The core functions have been moved to a [separate repository](https://github.com
 ![alt tag](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/AppArchitecture.png)
 
 ##Usage
+###Clone
+1. git clone https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.git
+2. git submodule init 
+3. git submodule update
+
 ###Compilation
 ####APK - Package
 The app can be downloaded directly from the Google Play Store - [Face Recognition](https://play.google.com/store/apps/details?id=ch.zhaw.facerecognition).
