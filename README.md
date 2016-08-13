@@ -23,7 +23,7 @@ The core functions have been moved to a [separate repository](https://github.com
 ##Usage
 ###Clone
 1. git clone https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.git
-2. git submodule init 
+2. git submodule init
 3. git submodule update
 
 ###Compilation
