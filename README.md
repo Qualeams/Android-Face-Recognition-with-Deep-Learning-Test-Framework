@@ -14,11 +14,11 @@ Code has been derived from the following sources:
 - caffe-android-demo - https://github.com/sh1r0/caffe-android-demo
 - caffe-android-lib - https://github.com/sh1r0/caffe-android-lib
 
-##App architecture
-![alt tag](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/AppArchitecture.png)
-
 ##Library
 The core functions have been moved to a [separate repository](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Library.git) which can be used as an Android library (module).
+
+##App architecture
+![alt tag](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/AppArchitecture.png)
 
 ##Usage
 ###Compilation
