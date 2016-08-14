@@ -1,4 +1,4 @@
-#Android Face Recognition with Deep Learning
+#Android Face Recognition with Deep Learning - Test Framework
 ##Acknowledgements
 This app was developed by Michael Sladoje and Mike Schälchli during a bachelor thesis at the Zurich University of Applied Sciences.
 
@@ -14,22 +14,23 @@ Code has been derived from the following sources:
 - caffe-android-demo - https://github.com/sh1r0/caffe-android-demo
 - caffe-android-lib - https://github.com/sh1r0/caffe-android-lib
 
+##Library
+The core functions have been moved to a [separate repository](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Library.git) which can be used as an Android library (module).
+
 ##App architecture
 ![alt tag](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/AppArchitecture.png)
 
 ##Usage
+###Clone
+1. git clone https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.git
+2. git submodule init
+3. git submodule update
+
 ###Compilation
 ####APK - Package
 The app can be downloaded directly from the Google Play Store - [Face Recognition](https://play.google.com/store/apps/details?id=ch.zhaw.facerecognition).
 ####Android SDK - Java
 The source can be compiled using Android Studio (common gradle scripts).
-
-####Android NDK - C++
-The libs for LIBSVM and TensorFlow can be compiled outside of Android Studio with the make command (the Makefile is located under /jni-build).
-There are 3 different usages:
-- make clean (executes ndk-build clean)
-- make (executes ndk-build)
-- make install (copies the libs to the folder /app/src/main/jniLibs/armeabi-v7a)
 
 ###User manual
 The user manual can be found [here](https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning/blob/master/USER%20MANUAL.md)
