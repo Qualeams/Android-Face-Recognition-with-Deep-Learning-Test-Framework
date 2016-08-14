@@ -79,45 +79,49 @@ public class TrainingActivity extends Activity {
                     if (persons.length > 0) {
                         Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.TRAINING, algorithm);
                         for (File person : persons) {
-                            File[] files = person.listFiles();
-                            int counter = 1;
-                            for (File file : files) {
-                                Mat imgRgb = Imgcodecs.imread(file.getAbsolutePath());
-                                Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
-                                Mat processedImage = new Mat();
-                                imgRgb.copyTo(processedImage);
-                                List<Mat> images = ppF.getProcessedImage(processedImage);
-                                if (images == null || images.size() > 1) {
-                                    // More than 1 face detected --> cannot use this file for training
-                                    continue;
-                                } else {
-                                    processedImage = images.get(0);
-                                }
-                                if (processedImage.empty()) {
-                                    continue;
-                                }
-                                // The last token is the name --> Folder name = Person name
-                                String[] tokens = file.getParent().split("/");
-                                final String name = tokens[tokens.length - 1];
+                            if (person.isDirectory()){
+                                File[] files = person.listFiles();
+                                int counter = 1;
+                                for (File file : files) {
+                                    if (FileHelper.isFileAnImage(file)){
+                                        Mat imgRgb = Imgcodecs.imread(file.getAbsolutePath());
+                                        Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
+                                        Mat processedImage = new Mat();
+                                        imgRgb.copyTo(processedImage);
+                                        List<Mat> images = ppF.getProcessedImage(processedImage);
+                                        if (images == null || images.size() > 1) {
+                                            // More than 1 face detected --> cannot use this file for training
+                                            continue;
+                                        } else {
+                                            processedImage = images.get(0);
+                                        }
+                                        if (processedImage.empty()) {
+                                            continue;
+                                        }
+                                        // The last token is the name --> Folder name = Person name
+                                        String[] tokens = file.getParent().split("/");
+                                        final String name = tokens[tokens.length - 1];
 
-                                MatName m = new MatName("processedImage", processedImage);
-                                fileHelper.saveMatToImage(m, FileHelper.DATA_PATH);
+                                        MatName m = new MatName("processedImage", processedImage);
+                                        fileHelper.saveMatToImage(m, FileHelper.DATA_PATH);
 
-                                rec.addImage(processedImage, name, false);
+                                        rec.addImage(processedImage, name, false);
 
-//                            fileHelper.saveCroppedImage(imgRgb, ppF, file, name, counter);
+//                                      fileHelper.saveCroppedImage(imgRgb, ppF, file, name, counter);
 
-                                // Update screen to show the progress
-                                final int counterPost = counter;
-                                final int filesLength = files.length;
-                                progress.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        progress.append("Image " + counterPost + " of " + filesLength + " from " + name + " imported.\n");
+                                        // Update screen to show the progress
+                                        final int counterPost = counter;
+                                        final int filesLength = files.length;
+                                        progress.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                progress.append("Image " + counterPost + " of " + filesLength + " from " + name + " imported.\n");
+                                            }
+                                        });
+
+                                        counter++;
                                     }
-                                });
-
-                                counter++;
+                                }
                             }
                         }
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);

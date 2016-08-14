@@ -91,67 +91,73 @@ public class TestActivity extends AppCompatActivity {
                         results.add("Set;Expected Name;Expected File;Result");
                         Date time_start = new Date();
                         for (File person : persons) {
-                            File[] folders = person.listFiles();
-                            for (File folder : folders) {
-                                File[] files = folder.listFiles();
-                                int counter = 1;
-                                for (File file : files) {
-                                    Date time_preprocessing_start = new Date();
-                                    Mat imgRgba = Imgcodecs.imread(file.getAbsolutePath());
-                                    Imgproc.cvtColor(imgRgba, imgRgba, Imgproc.COLOR_BGRA2RGBA);
+                            if (person.isDirectory()){
+                                File[] folders = person.listFiles();
+                                for (File folder : folders) {
+                                    if (folder.isDirectory()){
+                                        File[] files = folder.listFiles();
+                                        int counter = 1;
+                                        for (File file : files) {
+                                            if (FileHelper.isFileAnImage(file)){
+                                                Date time_preprocessing_start = new Date();
+                                                Mat imgRgba = Imgcodecs.imread(file.getAbsolutePath());
+                                                Imgproc.cvtColor(imgRgba, imgRgba, Imgproc.COLOR_BGRA2RGBA);
 
-                                    List<Mat> images = ppF.getProcessedImage(imgRgba);
-                                    if (images == null || images.size() > 1) {
-                                        // More than 1 face detected --> cannot use this file for training
-                                        Date time_preprocessing_end = new Date();
-                                        // Subtract time of preprocessing
-                                        time_start.setTime(time_start.getTime() + (time_preprocessing_end.getTime() - time_preprocessing_start.getTime()));
-                                        continue;
-                                    } else {
-                                        imgRgba = images.get(0);
-                                    }
-                                    if (imgRgba.empty()) {
-                                        Date time_preprocessing_end = new Date();
-                                        // Subtract time of preprocessing
-                                        time_start.setTime(time_start.getTime() + (time_preprocessing_end.getTime() - time_preprocessing_start.getTime()));
-                                        continue;
-                                    }
-                                    // The last token is the name --> Folder name = Person name
-                                    String[] tokens = file.getParentFile().getParent().split("/");
-                                    final String name = tokens[tokens.length - 1];
-                                    tokens = file.getParent().split("/");
-                                    final String folderName = tokens[tokens.length - 1];
+                                                List<Mat> images = ppF.getProcessedImage(imgRgba);
+                                                if (images == null || images.size() > 1) {
+                                                    // More than 1 face detected --> cannot use this file for training
+                                                    Date time_preprocessing_end = new Date();
+                                                    // Subtract time of preprocessing
+                                                    time_start.setTime(time_start.getTime() + (time_preprocessing_end.getTime() - time_preprocessing_start.getTime()));
+                                                    continue;
+                                                } else {
+                                                    imgRgba = images.get(0);
+                                                }
+                                                if (imgRgba.empty()) {
+                                                    Date time_preprocessing_end = new Date();
+                                                    // Subtract time of preprocessing
+                                                    time_start.setTime(time_start.getTime() + (time_preprocessing_end.getTime() - time_preprocessing_start.getTime()));
+                                                    continue;
+                                                }
+                                                // The last token is the name --> Folder name = Person name
+                                                String[] tokens = file.getParentFile().getParent().split("/");
+                                                final String name = tokens[tokens.length - 1];
+                                                tokens = file.getParent().split("/");
+                                                final String folderName = tokens[tokens.length - 1];
 
-//                                fileHelper.saveCroppedImage(imgRgb, ppF, file, name, total);
+//                                              fileHelper.saveCroppedImage(imgRgb, ppF, file, name, total);
 
-                                    total++;
-                                    if (folderName.equals("reference")) {
-                                        total_reference++;
-                                    } else if (folderName.equals("deviation")) {
-                                        total_deviation++;
-                                    }
+                                                total++;
+                                                if (folderName.equals("reference")) {
+                                                    total_reference++;
+                                                } else if (folderName.equals("deviation")) {
+                                                    total_deviation++;
+                                                }
 
-                                    String name_recognized = rec.recognize(imgRgba, name);
-                                    results.add(folderName + ";" + name + ";" + file.getName() + ";" + name_recognized);
+                                                String name_recognized = rec.recognize(imgRgba, name);
+                                                results.add(folderName + ";" + name + ";" + file.getName() + ";" + name_recognized);
 
-                                    if (name.equals(name_recognized)) {
-                                        matches++;
-                                        if (folderName.equals("reference")) {
-                                            matches_reference++;
-                                        } else if (folderName.equals("deviation")) {
-                                            matches_deviation++;
+                                                if (name.equals(name_recognized)) {
+                                                    matches++;
+                                                    if (folderName.equals("reference")) {
+                                                        matches_reference++;
+                                                    } else if (folderName.equals("deviation")) {
+                                                        matches_deviation++;
+                                                    }
+                                                }
+                                                // Update screen to show the progress
+                                                final int counterPost = counter;
+                                                final int filesLength = files.length;
+                                                progress.post(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        progress.append("Image " + counterPost + " of " + filesLength + " from " + name + "\n");
+                                                    }
+                                                });
+                                                counter++;
+                                            }
                                         }
                                     }
-                                    // Update screen to show the progress
-                                    final int counterPost = counter;
-                                    final int filesLength = files.length;
-                                    progress.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            progress.append("Image " + counterPost + " of " + filesLength + " from " + name + "\n");
-                                        }
-                                    });
-                                    counter++;
                                 }
                             }
                         }
