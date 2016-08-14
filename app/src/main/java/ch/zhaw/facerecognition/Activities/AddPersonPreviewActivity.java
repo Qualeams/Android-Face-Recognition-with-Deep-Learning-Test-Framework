@@ -146,7 +146,8 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
             Mat img = ppF.getCroppedImage(imgCopy);
             if(img != null){
                 Rect[] faces = ppF.getFacesForRecognition();
-                if((faces != null) && (faces.length > 0)){
+                //Only proceed if 1 face has been detected, ignore if 0 or more than 1 face have been detected
+                if((faces != null) && (faces.length == 1)){
                     faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
                     if(((method == MANUALLY) && capturePressed) || (method == TIME)){
                         MatName m = new MatName(name + "_" + total, img);
