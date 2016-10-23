@@ -1,2 +1,2 @@
-include ':app', ':facerecognitionlibrary', ':openCVLibrary3.1.0'
-project(':openCVLibrary3.1.0').projectDir = new File('facerecognitionlibrary/openCVLibrary310')
+include ':app', ':facerecognitionlibrary', ':openCVLibrary310'
+project(':openCVLibrary310').projectDir = new File('facerecognitionlibrary/openCVLibrary310')
