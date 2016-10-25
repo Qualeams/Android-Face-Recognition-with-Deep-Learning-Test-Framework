@@ -1,6 +1,6 @@
 #Android Face Recognition with Deep Learning - Test Framework
 ## Continuous integration
-[![Build Status](https://travis-ci.org/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.svg)](https://travis-ci.org/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.svg)
+[![Build Status](https://travis-ci.org/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.svg)](https://travis-ci.org/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework)
 ##Acknowledgements
 This app was developed by Michael Sladoje and Mike Schälchli during a bachelor thesis at the Zurich University of Applied Sciences.
 
