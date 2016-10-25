@@ -1,15 +1,17 @@
 script:
-  # By default Travis CI executes './gradlew build connectedCheck' if no 'script:' section found.
-  - ./gradlew build
-
+- "./gradlew build"
 language: android
-
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 android:
   components:
-    - tools
-    - build-tools-23.0.1
-    - android-23
-    - extra-android-m2repository
+  - tools
+  - build-tools-23.0.1
+  - android-23
+  - extra-android-m2repository
+deploy:
+  provider: bintray
+  file: ".travis_descriptor.json"
+  user: sladomic
+  key:
+    secure: njGZ5u5YAIDqtcqTJrHf7fqDsa0gLc99sc2K/5Qu6iYWuIkln6e/6fyFCJu7BJonIQTbQH7n5q4rF4G+Moz6sGbgQjWDDfK7gB+vurpbaO5Fhu/Tv7O8Mv0l0AXScXmTgDZzHTzmo0tKmlm9KmqiGN+Bw4sD8F0FpO5D0nsjER/uybSWHqwEc7jGOmn2IBP5vJwpFptUk5aR3qkEIfSQfsnBffP9HSeMvoSBVUI0VTBhNh7JiXzRNhDWKSBw+LdOTT3IT1n3gY9SNCwalHuDqej3FHs2mUoNqViQAWGeS8ZFPD4dX6RPMyaemndRcQX7fEPXkYoKdyfRKxbwDK1mGlOl3fNX4ZUYkywSVOo8ItReFiobkyYyRHlxEL0dEuIFv9H0S93KhKYrnzdzvNPMiZTHq/qYNKbbrNNpTYv/9P0z28Ip2A41hFuBD0XQxdNANflqX4kQFb071hL3cbzseISJrMV2e0/Z1YSklW0mZBwJNxdT6NZ16hkwPawocgI+sk+a/oE2hrP24Dj8+1WsM7MCezLS1Eo6pSQLjQ99OafHNloBVeg705lAXNxDNKL8k+2W56RgpOLLQaKbeCPbUd06RgaqirQ24u+x3gH67ubddBy3TTBG7AL0mT+liYC0cUwF+Ug90VkxPn4o4bwIjEV+VHLSrgPuHBndiA4PhMQ=
