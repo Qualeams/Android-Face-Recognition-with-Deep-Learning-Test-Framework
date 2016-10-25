@@ -1,0 +1,15 @@
+script:
+  # By default Travis CI executes './gradlew build connectedCheck' if no 'script:' section found.
+  - ./gradlew build
+
+language: android
+
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+    - tools
+    - build-tools-23.0.1
+    - android-23
+    - extra-android-m2repository
