@@ -35,6 +35,7 @@ import java.util.List;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
+import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
@@ -68,16 +69,14 @@ public class TrainingActivity extends Activity {
         thread = new Thread(new Runnable() {
             public void run() {
                 if(!Thread.currentThread().isInterrupted()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    int N = Integer.valueOf(sharedPref.getString("key_N", "25"));
-                    PreProcessorFactory ppF = new PreProcessorFactory(getApplicationContext(), N);
-                    String algorithm = sharedPref.getString("key_classification_method", getResources().getString(R.string.eigenfaces));
+                    PreProcessorFactory ppF = new PreProcessorFactory();
+                    String algorithm = PreferencesHelper.getClassificationMethod();
 
                     FileHelper fileHelper = new FileHelper();
                     fileHelper.createDataFolderIfNotExsiting();
                     final File[] persons = fileHelper.getTrainingList();
                     if (persons.length > 0) {
-                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.TRAINING, algorithm);
+                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(Recognition.TRAINING, algorithm);
                         for (File person : persons) {
                             if (person.isDirectory()){
                                 File[] files = person.listFiles();

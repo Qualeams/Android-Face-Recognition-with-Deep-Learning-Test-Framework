@@ -36,7 +36,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
+import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
@@ -70,16 +72,14 @@ public class TestActivity extends AppCompatActivity {
         thread = new Thread(new Runnable() {
             public void run() {
                 if(!Thread.currentThread().isInterrupted()){
-                    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    int N = Integer.valueOf(sharedPref.getString("key_N", "25"));
-                    PreProcessorFactory ppF = new PreProcessorFactory(getApplicationContext(), N);
-                    String algorithm = sharedPref.getString("key_classification_method", getResources().getString(R.string.eigenfaces));
+                    PreProcessorFactory ppF = new PreProcessorFactory();
+                    String algorithm = PreferencesHelper.getClassificationMethod();
 
                     FileHelper fileHelper = new FileHelper();
                     fileHelper.createDataFolderIfNotExsiting();
                     final File[] persons = fileHelper.getTestList();
                     if (persons.length > 0) {
-                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.RECOGNITION, algorithm);
+                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(Recognition.RECOGNITION, algorithm);
                         // total and matches are used to calculate the accuracy afterwards
                         int total = 0;
                         int total_reference = 0;
@@ -168,7 +168,7 @@ public class TestActivity extends AppCompatActivity {
                         double accuracy_reference = (double) matches_reference / (double) total_reference;
                         double accuracy_deviation = (double) matches_deviation / (double) total_deviation;
                         double robustness = accuracy_deviation / accuracy_reference;
-                        Map<String, ?> printMap = sharedPref.getAll();
+                        Map<String, ?> printMap = FaceRecognitionLibrary.sharedPreferences.getAll();
                         fileHelper.saveResultsToFile(printMap, accuracy, accuracy_reference, accuracy_deviation, robustness, durationPerImage, results);
                         rec.saveTestData();
 

@@ -17,6 +17,7 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.hardware.camera2.params.Face;
 import android.os.Bundle;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -36,8 +37,10 @@ import org.opencv.core.Rect;
 import java.io.File;
 import java.util.List;
 
+import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
+import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
@@ -132,9 +135,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     {
         super.onResume();
 
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        int N = Integer.valueOf(sharedPref.getString("key_N", "25"));
-        ppF = new PreProcessorFactory(getApplicationContext(), N);
+        ppF = new PreProcessorFactory();
 
         final android.os.Handler handler = new android.os.Handler(Looper.getMainLooper());
         Thread t = new Thread(new Runnable() {
@@ -147,7 +148,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
                 });
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String algorithm = sharedPref.getString("key_classification_method", getResources().getString(R.string.eigenfaces));
-                rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.RECOGNITION, algorithm);
+                rec = RecognitionFactory.getRecognitionAlgorithm(Recognition.RECOGNITION, algorithm);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

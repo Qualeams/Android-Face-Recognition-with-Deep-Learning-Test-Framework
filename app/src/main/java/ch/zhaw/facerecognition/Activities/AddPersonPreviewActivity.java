@@ -38,18 +38,14 @@ import java.util.Date;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
+import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
-import ch.zhaw.facerecognitionlibrary.PreProcessor.StandardPreprocessing.Crop;
 import ch.zhaw.facerecognition.R;
 
 public class AddPersonPreviewActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     public static final int TIME = 0;
     public static final int MANUALLY = 1;
     private JavaCameraView preview;
-    private static final String TAG = "AddPersonPreview";
-    private static final Scalar FACE_RECT_COLOR = new Scalar(0, 255, 0, 255);
-    private static final int FONT_SIZE = 5;
-    private static final int THICKNESS = 3;
     // The timerDiff defines after how many milliseconds a picture is taken
     private long timerDiff;
     private long lastTime;
@@ -191,7 +187,7 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
     {
         super.onResume();
 
-        ppF = new PreProcessorFactory(getApplicationContext());
+        ppF = new PreProcessorFactory();
         preview.enableView();
     }
 
