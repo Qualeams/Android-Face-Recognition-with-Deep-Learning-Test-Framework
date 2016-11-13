@@ -35,6 +35,7 @@ import org.opencv.core.Scalar;
 import java.io.File;
 import java.util.Date;
 
+import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
@@ -45,7 +46,7 @@ import ch.zhaw.facerecognition.R;
 public class AddPersonPreviewActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     public static final int TIME = 0;
     public static final int MANUALLY = 1;
-    private JavaCameraView preview;
+    private CustomCameraView preview;
     // The timerDiff defines after how many milliseconds a picture is taken
     private long timerDiff;
     private long lastTime;
@@ -98,7 +99,7 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         timerDiff = Integer.valueOf(sharedPrefs.getString("key_timerDiff", "500"));
 
-        preview = (JavaCameraView) findViewById(R.id.AddPersonPreview);
+        preview = (CustomCameraView) findViewById(R.id.AddPersonPreview);
         // Use camera which is selected in settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         front_camera = sharedPref.getBoolean("key_front_camera", true);

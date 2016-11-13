@@ -38,6 +38,7 @@ import java.io.File;
 import java.util.List;
 
 import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
+import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
 import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
@@ -47,7 +48,7 @@ import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
 import ch.zhaw.facerecognitionlibrary.Recognition.RecognitionFactory;
 
 public class RecognitionActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    private JavaCameraView mRecognitionView;
+    private CustomCameraView mRecognitionView;
     private static final String TAG = "Recognition";
     private FileHelper fh;
     private Recognition rec;
@@ -75,7 +76,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         } else {
             Log.i(TAG,"Photos directory already existing");
         }
-        mRecognitionView = (JavaCameraView) findViewById(R.id.RecognitionView);
+        mRecognitionView = (CustomCameraView) findViewById(R.id.RecognitionView);
         // Use camera which is selected in settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         front_camera = sharedPref.getBoolean("key_front_camera", true);
