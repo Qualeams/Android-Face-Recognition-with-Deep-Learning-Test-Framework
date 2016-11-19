@@ -25,12 +25,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 
 import java.io.File;
 import java.util.Date;
@@ -40,14 +38,13 @@ import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
-import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 
 public class AddPersonPreviewActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     public static final int TIME = 0;
     public static final int MANUALLY = 1;
-    private CustomCameraView preview;
+    private CustomCameraView mAddPersonView;
     // The timerDiff defines after how many milliseconds a picture is taken
     private long timerDiff;
     private long lastTime;
@@ -62,6 +59,8 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
     private ImageButton btn_Capture;
     private boolean capturePressed;
     private boolean front_camera;
+    private boolean night_portrait;
+    private int exposure_compensation;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -100,7 +99,7 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         timerDiff = Integer.valueOf(sharedPrefs.getString("key_timerDiff", "500"));
 
-        preview = (CustomCameraView) findViewById(R.id.AddPersonPreview);
+        mAddPersonView = (CustomCameraView) findViewById(R.id.AddPersonPreview);
         // Use camera which is selected in settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         front_camera = sharedPref.getBoolean("key_front_camera", true);
@@ -108,17 +107,23 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         numberOfPictures = Integer.valueOf(sharedPref.getString("key_numberOfPictures", "100"));
 
         if (front_camera){
-            preview.setCameraIndex(1);
+            mAddPersonView.setCameraIndex(1);
         } else {
-            preview.setCameraIndex(-1);
+            mAddPersonView.setCameraIndex(-1);
         }
-        preview.setVisibility(SurfaceView.VISIBLE);
-        preview.setCvCameraViewListener(this);
+        mAddPersonView.setVisibility(SurfaceView.VISIBLE);
+        mAddPersonView.setCvCameraViewListener(this);
     }
 
     @Override
     public void onCameraViewStarted(int width, int height) {
 
+        if (night_portrait) {
+            mAddPersonView.setNightPortrait();
+        }
+
+        if (exposure_compensation != 50 && 0 <= exposure_compensation && exposure_compensation <= 100)
+            mAddPersonView.setExposure(exposure_compensation);
     }
 
     @Override
@@ -193,20 +198,20 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
         super.onResume();
 
         ppF = new PreProcessorFactory();
-        preview.enableView();
+        mAddPersonView.enableView();
     }
 
     @Override
     public void onPause()
     {
         super.onPause();
-        if (preview != null)
-            preview.disableView();
+        if (mAddPersonView != null)
+            mAddPersonView.disableView();
     }
 
     public void onDestroy() {
         super.onDestroy();
-        if (preview != null)
-            preview.disableView();
+        if (mAddPersonView != null)
+            mAddPersonView.disableView();
     }
 }

@@ -17,6 +17,7 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.hardware.Camera;
 import android.hardware.camera2.params.Face;
 import android.os.Bundle;
 import android.os.Looper;
@@ -55,6 +56,8 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     private PreProcessorFactory ppF;
     private ProgressBar progressBar;
     private boolean front_camera;
+    private boolean night_portrait;
+    private int exposure_compensation;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -80,6 +83,9 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         // Use camera which is selected in settings
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         front_camera = sharedPref.getBoolean("key_front_camera", true);
+        night_portrait = sharedPref.getBoolean("key_night_portrait", false);
+        exposure_compensation = Integer.valueOf(sharedPref.getString("key_exposure_compensation", "20"));
+
         if (front_camera){
             mRecognitionView.setCameraIndex(1);
         } else {
@@ -104,6 +110,13 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     }
 
     public void onCameraViewStarted(int width, int height) {
+
+        if (night_portrait) {
+            mRecognitionView.setNightPortrait();
+        }
+
+        if (exposure_compensation != 50 && 0 <= exposure_compensation && exposure_compensation <= 100)
+        mRecognitionView.setExposure(exposure_compensation);
     }
 
     public void onCameraViewStopped() {
@@ -115,6 +128,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         imgRgba.copyTo(img);
         List<Mat> images = ppF.getProcessedImage(img);
         Rect[] faces = ppF.getFacesForRecognition();
+
         // Selfie / Mirror mode
         if(front_camera){
             Core.flip(imgRgba,imgRgba,1);
