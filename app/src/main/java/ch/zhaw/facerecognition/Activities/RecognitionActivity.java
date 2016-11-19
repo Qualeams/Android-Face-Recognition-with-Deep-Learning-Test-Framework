@@ -17,8 +17,6 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.hardware.Camera;
-import android.hardware.camera2.params.Face;
 import android.os.Bundle;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -29,7 +27,6 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -38,11 +35,9 @@ import org.opencv.core.Rect;
 import java.io.File;
 import java.util.List;
 
-import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
 import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
-import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
