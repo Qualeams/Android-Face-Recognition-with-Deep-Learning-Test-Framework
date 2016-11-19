@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-    <!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright 2016 Michael Sladoje and Mike Schälchli. All Rights Reserved.
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +12,7 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
      See the License for the specific language governing permissions and
      limitations under the License.
-    -->
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.zhaw.facerecognition">
 
@@ -39,7 +38,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="ch.zhaw.facerecognition.Activities.MainActivity"
+            android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ch.zhaw.facerecognition.Activities.RecognitionActivity"
+            android:name=".Activities.RecognitionActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -61,16 +60,17 @@
                 <data android:mimeType="vnd.android.cursor.dir/image" />
             </intent-filter>
         </activity>
-        <activity android:name="ch.zhaw.facerecognition.Activities.TrainingActivity" />
+        <activity android:name=".Activities.TrainingActivity" />
         <activity
-            android:name="ch.zhaw.facerecognition.Activities.SettingsActivity"
+            android:name=".Activities.SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name="ch.zhaw.facerecognition.Activities.TestActivity" />
-        <activity android:name="ch.zhaw.facerecognition.Activities.AddPersonActivity" />
-        <activity android:name="ch.zhaw.facerecognition.Activities.AddPersonPreviewActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:screenOrientation="landscape">
-        </activity>
+        <activity android:name=".Activities.TestActivity" />
+        <activity android:name=".Activities.AddPersonActivity" />
+        <activity
+            android:name=".Activities.AddPersonPreviewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".Activities.DetectionTestActivity"></activity>
     </application>
 
 </manifest>
