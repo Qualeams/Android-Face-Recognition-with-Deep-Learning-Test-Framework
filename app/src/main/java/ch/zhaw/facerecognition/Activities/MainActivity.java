@@ -89,6 +89,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button callDetectionTest = (Button)findViewById(R.id.button_detection_test);
+        if(fh.getDetectionTestList().length == 0) callDetectionTest.setEnabled(false);
+        callDetectionTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), DetectionTestActivity.class));
+            }
+        });
+
         Button callSettings = (Button)findViewById(R.id.button_settings);
         callSettings.setOnClickListener(new View.OnClickListener() {
             @Override

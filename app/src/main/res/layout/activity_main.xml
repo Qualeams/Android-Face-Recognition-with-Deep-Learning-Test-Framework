@@ -73,6 +73,14 @@
             style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Detection Test"
+            android:id="@+id/button_detection_test"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Recognition"
             android:layout_marginBottom="10dp"
             android:id="@+id/button_recognition" />
