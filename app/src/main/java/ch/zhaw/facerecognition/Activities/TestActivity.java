@@ -103,7 +103,7 @@ public class TestActivity extends AppCompatActivity {
                                                 Mat imgRgba = Imgcodecs.imread(file.getAbsolutePath());
                                                 Imgproc.cvtColor(imgRgba, imgRgba, Imgproc.COLOR_BGRA2RGBA);
 
-                                                List<Mat> images = ppF.getProcessedImage(imgRgba);
+                                                List<Mat> images = ppF.getProcessedImage(imgRgba, PreProcessorFactory.PreprocessingMode.RECOGNITION);
                                                 if (images == null || images.size() > 1) {
                                                     // More than 1 face detected --> cannot use this file for training
                                                     Date time_preprocessing_end = new Date();

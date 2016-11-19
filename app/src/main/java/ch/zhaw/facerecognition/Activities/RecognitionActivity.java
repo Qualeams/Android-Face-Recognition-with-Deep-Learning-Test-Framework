@@ -112,7 +112,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         Mat imgRgba = inputFrame.rgba();
         Mat img = new Mat();
         imgRgba.copyTo(img);
-        List<Mat> images = ppF.getProcessedImage(img);
+        List<Mat> images = ppF.getProcessedImage(img, PreProcessorFactory.PreprocessingMode.RECOGNITION);
         Rect[] faces = ppF.getFacesForRecognition();
         // Selfie / Mirror mode
         if(front_camera){

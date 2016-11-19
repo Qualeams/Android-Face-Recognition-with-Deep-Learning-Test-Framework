@@ -9,7 +9,9 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -23,6 +25,7 @@ import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
+import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
 import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
@@ -71,28 +74,33 @@ public class DetectionTestActivity extends AppCompatActivity {
                             int counter = 1;
                             for (File file : files) {
                                 if (FileHelper.isFileAnImage(file)) {
-                                    Date time_preprocessing_start = new Date();
                                     Mat imgRgba = Imgcodecs.imread(file.getAbsolutePath());
                                     Imgproc.cvtColor(imgRgba, imgRgba, Imgproc.COLOR_BGRA2RGBA);
 
-                                    List<Mat> images = ppF.getCroppedImage(imgRgba);
+                                    List<Mat> images = ppF.getProcessedImage(imgRgba, PreProcessorFactory.PreprocessingMode.DETECTION);
+                                    Rect[] faces = ppF.getFacesForRecognition();
 
                                     String result = "";
 
-                                    if (images == null) {
+                                    if (faces == null || faces.length == 0) {
                                         result = RESULT_NEGATIVE;
                                     } else {
                                         result = RESULT_POSITIVE;
-                                         // Save cropped images
-                                        String[] tokens = file.getName().split("\\.");
-                                        String name = tokens[0];
-                                        for (int i=0; i<images.size();i++){
-                                            MatName m = new MatName(name + "_" + (i + 1), images.get(i));
-                                            fileHelper.saveMatToImage(m, FileHelper.RESULTS_PATH + "/" + time_start.toString() + "/");
+                                        faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
+                                        for(int i = 0; i<faces.length; i++){
+                                            MatOperation.drawRectangleAndLabelOnPreview(images.get(0), faces[i], "", false);
                                         }
                                     }
 
-                                    String[] tokens = file.getParent().split("/");
+                                    // Save images
+                                    String[] tokens = file.getName().split("\\.");
+                                    String filename = tokens[0];
+                                    for (int i=0; i<images.size();i++){
+                                        MatName m = new MatName(filename + "_" + (i + 1), images.get(i));
+                                        fileHelper.saveMatToImage(m, FileHelper.RESULTS_PATH + "/" + time_start.toString() + "/");
+                                    }
+
+                                    tokens = file.getParent().split("/");
                                     final String name = tokens[tokens.length - 1];
 
                                     results.add(name + ";" + file.getName() + ";" + result);

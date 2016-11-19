@@ -87,7 +87,7 @@ public class TrainingActivity extends Activity {
                                         Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
                                         Mat processedImage = new Mat();
                                         imgRgb.copyTo(processedImage);
-                                        List<Mat> images = ppF.getProcessedImage(processedImage);
+                                        List<Mat> images = ppF.getProcessedImage(processedImage, PreProcessorFactory.PreprocessingMode.RECOGNITION);
                                         if (images == null || images.size() > 1) {
                                             // More than 1 face detected --> cannot use this file for training
                                             continue;
