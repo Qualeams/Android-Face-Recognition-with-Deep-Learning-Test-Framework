@@ -34,6 +34,7 @@ import org.opencv.core.Scalar;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
@@ -139,40 +140,43 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
             lastTime = time;
 
             // Check that only 1 face is found. Skip if any or more than 1 are found.
-            Mat img = ppF.getCroppedImage(imgCopy);
-            if(img != null){
-                Rect[] faces = ppF.getFacesForRecognition();
-                //Only proceed if 1 face has been detected, ignore if 0 or more than 1 face have been detected
-                if((faces != null) && (faces.length == 1)){
-                    faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
-                    if(((method == MANUALLY) && capturePressed) || (method == TIME)){
-                        MatName m = new MatName(name + "_" + total, img);
-                        if (folder.equals("Test")) {
-                            String wholeFolderPath = fh.TEST_PATH + name + "/" + subfolder;
-                            new File(wholeFolderPath).mkdirs();
-                            fh.saveMatToImage(m, wholeFolderPath + "/");
+            List<Mat> images = ppF.getCroppedImage(imgCopy);
+            if (images != null && images.size() == 1){
+                Mat img = images.get(0);
+                if(img != null){
+                    Rect[] faces = ppF.getFacesForRecognition();
+                    //Only proceed if 1 face has been detected, ignore if 0 or more than 1 face have been detected
+                    if((faces != null) && (faces.length == 1)){
+                        faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
+                        if(((method == MANUALLY) && capturePressed) || (method == TIME)){
+                            MatName m = new MatName(name + "_" + total, img);
+                            if (folder.equals("Test")) {
+                                String wholeFolderPath = fh.TEST_PATH + name + "/" + subfolder;
+                                new File(wholeFolderPath).mkdirs();
+                                fh.saveMatToImage(m, wholeFolderPath + "/");
+                            } else {
+                                String wholeFolderPath = fh.TRAINING_PATH + name;
+                                new File(wholeFolderPath).mkdirs();
+                                fh.saveMatToImage(m, wholeFolderPath + "/");
+                            }
+
+                            for(int i = 0; i<faces.length; i++){
+                                MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], String.valueOf(total), front_camera);
+                            }
+
+                            total++;
+
+                            // Stop after numberOfPictures (settings option)
+                            if(total >= numberOfPictures){
+                                Intent intent = new Intent(getApplicationContext(), AddPersonActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                            capturePressed = false;
                         } else {
-                            String wholeFolderPath = fh.TRAINING_PATH + name;
-                            new File(wholeFolderPath).mkdirs();
-                            fh.saveMatToImage(m, wholeFolderPath + "/");
-                        }
-
-                        for(int i = 0; i<faces.length; i++){
-                            MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], String.valueOf(total), front_camera);
-                        }
-
-                        total++;
-
-                        // Stop after numberOfPictures (settings option)
-                        if(total >= numberOfPictures){
-                            Intent intent = new Intent(getApplicationContext(), AddPersonActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                        capturePressed = false;
-                    } else {
-                        for(int i = 0; i<faces.length; i++){
-                            MatOperation.drawRectangleOnPreview(imgRgba, faces[i], front_camera);
+                            for(int i = 0; i<faces.length; i++){
+                                MatOperation.drawRectangleOnPreview(imgRgba, faces[i], front_camera);
+                            }
                         }
                     }
                 }
