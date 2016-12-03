@@ -106,6 +106,9 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
 
         numberOfPictures = Integer.valueOf(sharedPref.getString("key_numberOfPictures", "100"));
 
+        night_portrait = sharedPref.getBoolean("key_night_portrait", false);
+        exposure_compensation = Integer.valueOf(sharedPref.getString("key_exposure_compensation", "50"));
+
         if (front_camera){
             mAddPersonView.setCameraIndex(1);
         } else {
