@@ -3,13 +3,13 @@ package ch.zhaw.facerecognition.Activities;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -22,14 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import ch.zhaw.facerecognition.R;
-import ch.zhaw.facerecognitionlibrary.FaceRecognitionLibrary;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatName;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
 import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
-import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
-import ch.zhaw.facerecognitionlibrary.Recognition.RecognitionFactory;
 
 public class DetectionTestActivity extends AppCompatActivity {
     private static final String RESULT_NEGATIVE = "negative";
@@ -58,7 +55,7 @@ public class DetectionTestActivity extends AppCompatActivity {
         thread = new Thread(new Runnable() {
             public void run() {
                 if(!Thread.currentThread().isInterrupted()){
-                    PreProcessorFactory ppF = new PreProcessorFactory();
+                    PreProcessorFactory ppF = new PreProcessorFactory(getApplicationContext());
 
                     FileHelper fileHelper = new FileHelper();
                     File[] detectionFolders = fileHelper.getDetectionTestList();
@@ -127,7 +124,7 @@ public class DetectionTestActivity extends AppCompatActivity {
                         long duration = time_end.getTime() - time_start.getTime();
                         int durationPerImage = (int) duration / total;
                         double accuracy = (double) matches / (double) total;
-                        Map<String, ?> printMap = FaceRecognitionLibrary.sharedPreferences.getAll();
+                        Map<String, ?> printMap = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getAll();
                         fileHelper.saveResultsToFile(printMap, accuracy, durationPerImage, results);
 
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);

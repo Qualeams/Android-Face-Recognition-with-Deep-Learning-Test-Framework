@@ -197,7 +197,7 @@ public class AddPersonPreviewActivity extends Activity implements CameraBridgeVi
     {
         super.onResume();
 
-        ppF = new PreProcessorFactory();
+        ppF = new PreProcessorFactory(this);
         mAddPersonView.enableView();
     }
 

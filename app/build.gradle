@@ -8,8 +8,8 @@ android {
         applicationId "ch.zhaw.facerecognition"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 17
-        versionName "1.2.2"
+        versionCode 18
+        versionName "1.2.3"
     }
     buildTypes {
         release {

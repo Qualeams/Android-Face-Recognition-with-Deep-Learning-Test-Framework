@@ -69,14 +69,15 @@ public class TrainingActivity extends Activity {
         thread = new Thread(new Runnable() {
             public void run() {
                 if(!Thread.currentThread().isInterrupted()){
-                    PreProcessorFactory ppF = new PreProcessorFactory();
-                    String algorithm = PreferencesHelper.getClassificationMethod();
+                    PreProcessorFactory ppF = new PreProcessorFactory(getApplicationContext());
+                    PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext());
+                    String algorithm = preferencesHelper.getClassificationMethod();
 
                     FileHelper fileHelper = new FileHelper();
                     fileHelper.createDataFolderIfNotExsiting();
                     final File[] persons = fileHelper.getTrainingList();
                     if (persons.length > 0) {
-                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(Recognition.TRAINING, algorithm);
+                        Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.TRAINING, algorithm);
                         for (File person : persons) {
                             if (person.isDirectory()){
                                 File[] files = person.listFiles();

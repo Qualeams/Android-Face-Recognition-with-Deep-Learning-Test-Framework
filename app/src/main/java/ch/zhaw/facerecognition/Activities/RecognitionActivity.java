@@ -145,7 +145,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
     {
         super.onResume();
 
-        ppF = new PreProcessorFactory();
+        ppF = new PreProcessorFactory(getApplicationContext());
 
         final android.os.Handler handler = new android.os.Handler(Looper.getMainLooper());
         Thread t = new Thread(new Runnable() {
@@ -158,7 +158,7 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
                 });
                 SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String algorithm = sharedPref.getString("key_classification_method", getResources().getString(R.string.eigenfaces));
-                rec = RecognitionFactory.getRecognitionAlgorithm(Recognition.RECOGNITION, algorithm);
+                rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.RECOGNITION, algorithm);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
