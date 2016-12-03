@@ -1,0 +1,17 @@
+script:
+- "./gradlew build"
+language: android
+jdk:
+- oraclejdk8
+android:
+  components:
+  - tools
+  - build-tools-23.0.1
+  - android-23
+  - extra-android-m2repository
+deploy:
+  provider: bintray
+  file: ".travis_descriptor.json"
+  user: sladomic
+  key:
+    secure: sniav6EuV1bZckwlY2lp0W0fDwSvt6d9SuzWshDlQ7xY21T6a8B8JDa8hlYCrl9ANqNKpN3FwHQnMaeFuZhUrfv/G40rxfUqE9Cm6BKbFXPfQEpUlnKKIDNBA/GphYTpbXnas7h5OLmBgQIafZUsg9y17xweKcYm0GmxcnZiFtuELIOMi+Gp8Uxm3hNOLSLm8mF54azpZDTBZRWDbZXDsesKfSt+yXp2O75VwYxXMSRnl7IBsP1LycHogE7OdzSS/4Qccq4nFqiKH6vC/ZcuFdefMSr6MhkXPVBeeWIdpuRSy+9ha7OFfksHvSwgpFQmCJGjB1E3CJH83EC5TdkreXoc1+lksyqyAcJjK/Dof3aLsdCT/thI1hAO31L7zPuvNRd+ZCDfi+syU0FPfrUqAP8J99bA8+LS6OlC6LjC9wOU8ufwENOxS33B83/aYymP1CMEt71cmaM8eNZvdteDiy6TGstWfJsL+8My4VwJCEAZ2Nk29VHvsmb5ODubyM60epWLFBmF7ZzY8e/uC6cWWY8vGo6BqDwECSQzGl6lWRqMgCjnrqv/WHU0owm8uyz/8YZ/RqpPBjEEE9LZzmmLhyMlKLHBWIhCPGarulO44TDInrNgDwT+mTyn3By9iUyTIPSZcWbXPklZB1dxqoLcRrgwiFsXWBSL0DoT8EQ4VnI=
