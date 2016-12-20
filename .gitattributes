@@ -15,3 +15,4 @@ LICENSE.txt linguist-documentation
 NOTICE.txt linguist-documentation
 README.md linguist-documentation
 USER MANUAL.md linguist-documentation
+core.safecrlf false
