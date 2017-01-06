@@ -23,7 +23,7 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
     <ImageView
-       android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@drawable/background_main"
         android:alpha=".90"
@@ -57,23 +57,8 @@
             style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Training"
-            android:id="@+id/button_training"
-            android:layout_marginBottom="10dp" />
-
-        <Button
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Test"
-            android:id="@+id/button_test"
-            android:layout_marginBottom="10dp" />
-
-        <Button
-            style="@android:style/Widget.Holo.Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Detection Test"
+            android:enabled="false"
             android:id="@+id/button_detection_test"
             android:layout_marginBottom="10dp" />
 
@@ -81,9 +66,33 @@
             style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recognition"
+            android:text="Detection View"
             android:layout_marginBottom="10dp"
-            android:id="@+id/button_recognition" />
+            android:id="@+id/button_detection_view" />
+
+        <Button
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recognition Training"
+            android:id="@+id/button_recognition_training"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recognition Test"
+            android:id="@+id/button_recognition_test"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recognition View"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/button_recognition_view" />
 
     </LinearLayout>
 </RelativeLayout>

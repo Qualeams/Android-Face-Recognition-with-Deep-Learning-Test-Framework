@@ -71,6 +71,10 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity android:name=".Activities.DetectionTestActivity"></activity>
+        <activity
+            android:name=".Activities.DetectionActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 
 </manifest>

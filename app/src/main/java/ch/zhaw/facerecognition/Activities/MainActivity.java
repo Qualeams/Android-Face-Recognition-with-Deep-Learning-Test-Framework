@@ -51,6 +51,14 @@ public class MainActivity extends Activity {
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
+        Button callSettings = (Button)findViewById(R.id.button_settings);
+        callSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), SettingsActivity.class));
+            }
+        });
+
         Button callAddPerson = (Button)findViewById(R.id.button_addPerson);
         callAddPerson.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,34 +69,6 @@ public class MainActivity extends Activity {
 
         FileHelper fh = new FileHelper();
 
-        Button callRecognition = (Button)findViewById(R.id.button_recognition);
-        if(!((new File(fh.DATA_PATH)).exists())) callRecognition.setEnabled(false);
-        callRecognition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), RecognitionActivity.class));
-            }
-        });
-
-
-        Button callTraining = (Button)findViewById(R.id.button_training);
-        if(fh.getTrainingList().length == 0) callTraining.setEnabled(false);
-        callTraining.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), TrainingActivity.class));
-            }
-        });
-
-        Button callTest = (Button)findViewById(R.id.button_test);
-        if(fh.getTestList().length == 0 || !((new File(fh.DATA_PATH)).exists())) callTest.setEnabled(false);
-        callTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), TestActivity.class));
-            }
-        });
-
         Button callDetectionTest = (Button)findViewById(R.id.button_detection_test);
         if(fh.getDetectionTestList().length == 0) callDetectionTest.setEnabled(false);
         callDetectionTest.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +78,39 @@ public class MainActivity extends Activity {
             }
         });
 
-        Button callSettings = (Button)findViewById(R.id.button_settings);
-        callSettings.setOnClickListener(new View.OnClickListener() {
+        Button callDetectionView = (Button)findViewById(R.id.button_detection_view);
+        callDetectionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), SettingsActivity.class));
+                startActivity(new Intent(v.getContext(), DetectionActivity.class));
+            }
+        });
+
+        Button callRecognition = (Button)findViewById(R.id.button_recognition_view);
+        if(!((new File(fh.DATA_PATH)).exists())) callRecognition.setEnabled(false);
+        callRecognition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), RecognitionActivity.class));
+            }
+        });
+
+
+        Button callTraining = (Button)findViewById(R.id.button_recognition_training);
+        if(fh.getTrainingList().length == 0) callTraining.setEnabled(false);
+        callTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), TrainingActivity.class));
+            }
+        });
+
+        Button callTest = (Button)findViewById(R.id.button_recognition_test);
+        if(fh.getTestList().length == 0 || !((new File(fh.DATA_PATH)).exists())) callTest.setEnabled(false);
+        callTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), TestActivity.class));
             }
         });
     }
