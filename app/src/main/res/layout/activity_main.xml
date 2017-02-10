@@ -94,5 +94,13 @@
             android:layout_marginBottom="10dp"
             android:id="@+id/button_recognition_view" />
 
+        <Button
+            style="@android:style/Widget.Holo.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/button_about" />
+
     </LinearLayout>
 </RelativeLayout>

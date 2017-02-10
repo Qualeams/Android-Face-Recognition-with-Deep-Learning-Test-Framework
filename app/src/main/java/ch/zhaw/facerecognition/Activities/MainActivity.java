@@ -17,8 +17,10 @@ package ch.zhaw.facerecognition.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -111,6 +113,22 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), TestActivity.class));
+            }
+        });
+
+        Button callAbout = (Button)findViewById(R.id.button_about);
+        callAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                try {
+                    startActivity(intent);
+                } catch (android.content.ActivityNotFoundException e) {
+                    Log.e(getClass().getName(), null, e);
+                    Toast.makeText(getApplicationContext(), "No browser found on the device to open the url", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
