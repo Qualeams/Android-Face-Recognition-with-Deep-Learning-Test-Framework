@@ -48,12 +48,16 @@ public class DetectionActivity extends Activity implements CameraBridgeViewBase.
         exposure_compensation = Integer.valueOf(sharedPref.getString("key_exposure_compensation", "20"));
 
         if (front_camera){
-            mDetectionView.setCameraIndex(1);
+            mDetectionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
         } else {
-            mDetectionView.setCameraIndex(-1);
+            mDetectionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
         }
         mDetectionView.setVisibility(SurfaceView.VISIBLE);
         mDetectionView.setCvCameraViewListener(this);
+
+        int maxCameraViewWidth = Integer.parseInt(sharedPref.getString("key_maximum_camera_view_width", "640"));
+        int maxCameraViewHeight = Integer.parseInt(sharedPref.getString("key_maximum_camera_view_height", "480"));
+        mDetectionView.setMaxFrameSize(maxCameraViewWidth, maxCameraViewHeight);
     }
 
     @Override

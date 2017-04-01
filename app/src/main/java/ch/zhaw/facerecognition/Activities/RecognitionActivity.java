@@ -38,6 +38,7 @@ import java.util.List;
 import ch.zhaw.facerecognitionlibrary.Helpers.CustomCameraView;
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
 import ch.zhaw.facerecognitionlibrary.Helpers.MatOperation;
+import ch.zhaw.facerecognitionlibrary.Helpers.PreferencesHelper;
 import ch.zhaw.facerecognitionlibrary.PreProcessor.PreProcessorFactory;
 import ch.zhaw.facerecognition.R;
 import ch.zhaw.facerecognitionlibrary.Recognition.Recognition;
@@ -82,12 +83,16 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         exposure_compensation = Integer.valueOf(sharedPref.getString("key_exposure_compensation", "20"));
 
         if (front_camera){
-            mRecognitionView.setCameraIndex(1);
+            mRecognitionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
         } else {
-            mRecognitionView.setCameraIndex(-1);
+            mRecognitionView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);
         }
         mRecognitionView.setVisibility(SurfaceView.VISIBLE);
         mRecognitionView.setCvCameraViewListener(this);
+
+        int maxCameraViewWidth = Integer.parseInt(sharedPref.getString("key_maximum_camera_view_width", "640"));
+        int maxCameraViewHeight = Integer.parseInt(sharedPref.getString("key_maximum_camera_view_height", "480"));
+        mRecognitionView.setMaxFrameSize(maxCameraViewWidth, maxCameraViewHeight);
     }
 
     @Override
