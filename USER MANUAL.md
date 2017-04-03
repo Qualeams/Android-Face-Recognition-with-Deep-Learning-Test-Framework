@@ -5,7 +5,7 @@
 2. [Test results](#testresults)
 3. [Manual for using the app](#manualfor)
 4. [Settings](#settings)
-5. [Add Person] (#addperson)
+5. [Add Person](#addperson)
 6. [Training](#training1)
 7. [Test](#test1)
 8. [Recognition](#recognition1) <a name="introduction"></a>
