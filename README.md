@@ -11,7 +11,7 @@ Code has been derived from the following sources:
 - LIBSVM - https://github.com/cjlin1/libsvm
 - AndroidLibSvm - https://github.com/yctung/AndroidLibSvm
 - TensorFlow - https://github.com/tensorflow/tensorflow
-- TensorFlow Android Demo - https://github.com/miyosuda/TensorFlowAndroidDemo
+- facenet - https://github.com/davidsandberg/facenet/pull/240
 - Caffe - https://github.com/BVLC/caffe
 - caffe-android-demo - https://github.com/sh1r0/caffe-android-demo
 - caffe-android-lib - https://github.com/sh1r0/caffe-android-lib
