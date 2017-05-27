@@ -1,1 +1,1 @@
-include ':app', ':facerecognitionlibrary'
+include ':app'

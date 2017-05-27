@@ -9,8 +9,8 @@ android {
         applicationId "ch.zhaw.facerecognition"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 27
-        versionName "1.5.2"
+        versionCode 28
+        versionName "1.5.3"
     }
     buildTypes {
         release {
@@ -46,5 +46,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:support-v4:23.3.0'
-    compile project(':facerecognitionlibrary')
+    compile 'ch.zhaw:facerecognitionlibrary:1.5.3'
 }
