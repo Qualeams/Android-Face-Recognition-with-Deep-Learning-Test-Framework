@@ -25,9 +25,7 @@ The core functions have been moved to a [separate repository](https://github.com
 ## Usage
 ### Clone
 ```
-git clone --recursive https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.git
-cd Android-Face-Recognition-with-Deep-Learning-Test-Framework/facerecognitionlibrary
-git checkout master
+git clone https://github.com/Qualeams/Android-Face-Recognition-with-Deep-Learning-Test-Framework.git
 ```
 
 ### Compilation
