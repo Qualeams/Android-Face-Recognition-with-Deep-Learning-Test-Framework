@@ -76,7 +76,7 @@ Model file: tensorflow_inception_graph.pb
 
 ##### VGG Face Descriptor model
 If you want to use the VGG Face Descriptor model, download it from here:
-https://www.dropbox.com/s/51wi2la5e034wfv/vgg_faces.pb?dl=0
+https://drive.google.com/file/d/0B9SVRVIKcFzAdm9rQ3JBOC16dkE/view?usp=sharing
 
 Caution: This model runs only on devices with at least 3 GB or RAM.
 
