@@ -135,12 +135,18 @@ public class RecognitionActivity extends Activity implements CameraBridgeViewBas
         }
         if(images == null || images.size() == 0 || faces == null || faces.length == 0 || ! (images.size() == faces.length)){
             // skip
+            if(images != null)
+                images.clear();
+            img.release();
             return imgRgba;
         } else {
             faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
             for(int i = 0; i<faces.length; i++){
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], rec.recognize(images.get(i), ""), front_camera);
+                images.get(i).release();
             }
+            images.clear();
+            img.release();
             return imgRgba;
         }
     }

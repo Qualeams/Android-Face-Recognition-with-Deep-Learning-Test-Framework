@@ -89,12 +89,18 @@ public class DetectionActivity extends Activity implements CameraBridgeViewBase.
         }
         if(images == null || images.size() == 0 || faces == null || faces.length == 0 || ! (images.size() == faces.length)){
             // skip
+            if(images != null)
+                images.clear();
+            img.release();
             return imgRgba;
         } else {
             faces = MatOperation.rotateFaces(imgRgba, faces, ppF.getAngleForRecognition());
             for(int i = 0; i<faces.length; i++){
+                images.get(i).release();
                 MatOperation.drawRectangleAndLabelOnPreview(imgRgba, faces[i], "", front_camera);
             }
+            images.clear();
+            img.release();
             return imgRgba;
         }
     }
