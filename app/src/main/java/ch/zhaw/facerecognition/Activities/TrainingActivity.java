@@ -31,6 +31,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ch.zhaw.facerecognitionlibrary.Helpers.FileHelper;
@@ -45,6 +47,7 @@ public class TrainingActivity extends Activity {
     private static final String TAG = "Training";
     TextView progress;
     Thread thread;
+    ArrayList<File> arrayUnknownFace;
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -61,14 +64,13 @@ public class TrainingActivity extends Activity {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-
+        arrayUnknownFace = new ArrayList<>();
         final Handler handler = new Handler(Looper.getMainLooper());
         thread = new Thread(new Runnable() {
             public void run() {
-                if(!Thread.currentThread().isInterrupted()){
+                if (!Thread.currentThread().isInterrupted()) {
                     PreProcessorFactory ppF = new PreProcessorFactory(getApplicationContext());
                     PreferencesHelper preferencesHelper = new PreferencesHelper(getApplicationContext());
                     String algorithm = preferencesHelper.getClassificationMethod();
@@ -76,14 +78,21 @@ public class TrainingActivity extends Activity {
                     FileHelper fileHelper = new FileHelper();
                     fileHelper.createDataFolderIfNotExsiting();
                     final File[] persons = fileHelper.getTrainingList();
+                    Arrays.sort(persons, new AlphanumFileComparator());
+
                     if (persons.length > 0) {
                         Recognition rec = RecognitionFactory.getRecognitionAlgorithm(getApplicationContext(), Recognition.TRAINING, algorithm);
                         for (File person : persons) {
-                            if (person.isDirectory()){
+                            if (person.isDirectory()) {
                                 File[] files = person.listFiles();
                                 int counter = 1;
-                                for (File file : files) {
-                                    if (FileHelper.isFileAnImage(file)){
+                                for (int i = 0; i < files.length; i++/*File file : files*/) {
+                                    File file = files[i];
+                                    if (i <7) {
+                                        arrayUnknownFace.add(file);
+                                    }
+
+                                    if (FileHelper.isFileAnImage(file)) {
                                         Mat imgRgb = Imgcodecs.imread(file.getAbsolutePath());
                                         Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
                                         Mat processedImage = new Mat();
@@ -124,6 +133,52 @@ public class TrainingActivity extends Activity {
                                 }
                             }
                         }
+                        if (arrayUnknownFace.size() > 0) {
+                            String[] tokens = arrayUnknownFace.get(0).getParent().split("/");
+                            String name = /*tokens[tokens.length - 1]+*/"???";
+                            for (int i = 0; i < arrayUnknownFace.size(); i++) {
+                                File file = arrayUnknownFace.get(i);
+                                if (FileHelper.isFileAnImage(file)) {
+                                    Mat imgRgb = Imgcodecs.imread(file.getAbsolutePath());
+                                    Imgproc.cvtColor(imgRgb, imgRgb, Imgproc.COLOR_BGRA2RGBA);
+                                    Mat processedImage = new Mat();
+                                    imgRgb.copyTo(processedImage);
+                                    List<Mat> images = ppF.getProcessedImage(processedImage, PreProcessorFactory.PreprocessingMode.RECOGNITION);
+                                    if (images == null || images.size() > 1) {
+                                        // More than 1 face detected --> cannot use this file for training
+                                        continue;
+                                    } else {
+                                        processedImage = images.get(0);
+                                    }
+                                    if (processedImage.empty()) {
+                                        continue;
+                                    }
+
+                                    // The last token is the name --> Folder name = Person name
+
+
+
+
+                                    MatName m = new MatName("processedImage", processedImage);
+                                    fileHelper.saveMatToImage(m, FileHelper.DATA_PATH);
+
+                                    rec.addImage(processedImage, name, false);
+
+                                    final String finalName = name;
+                                    progress.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progress.append("Image "  + " from " + finalName + " imported.\n");
+                                        }
+                                    });
+
+                                }
+
+                            }
+
+                        }
+
+
                         final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         if (rec.train()) {
